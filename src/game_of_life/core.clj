@@ -8,7 +8,11 @@
 ;; neighbors (wrap around)
 ;; neighbors is needed for step
 
-(defn make-board [height width cells]
+(defn make-board
+  "Returns a vector of vectors representing a 2-D board.
+  Dead cells are represented by nil entries and
+  live cells by the :on keyword."
+  [height width cells]
   (let [row (vec (repeat width nil))
         board (vec (repeat height row))
         create-cell-at (fn [board cell]
@@ -28,7 +32,9 @@
 (defn step
   "Performs one step in the game of life.
   Returns a new, updated set of live cells.
-  'cells' is a set of coordinates representing live cells"
+  'cells' is a set of coordinates representing live cells
+  'neighbors' is the neighborhood function used to compute the
+  neighborhood of live cells."
   [neighbors cells]
   ())
 
@@ -42,7 +48,7 @@
   (partial step neighbors))
 
 (defn init
-  ""
+  "Returns partial functions closed over height and width"
   [height width]
   (let [neighbors (make-neighbors-fn height width)]
     [(make-make-board-fn height width)
