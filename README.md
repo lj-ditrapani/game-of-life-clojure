@@ -1,14 +1,15 @@
-# game-of-life
+Conway's Game of Life
+=====================
 
-A Clojure library designed to ... well, that part is up to you.
+Conway's Game of Life on 2-D toroidal grid.
+Inspired by the version in Chapter 3 of
+_Clojure Programming: Practical Lisp for the Java World_
+by Chas Emerick, Brian Carper, and Christophe Grand and
+published by O'Reilly in 2012.
 
-## Usage
+A simple command-line implementation.
 
-FIXME
+Years ago, I implemented a graphical _game of life_ in JavaScript and
+when I saw the version in the Clojure book, I had to try it out myself.
 
-## License
-
-Copyright © 2014 FIXME
-
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Author:  Lyall Jonathan Di Trapani
