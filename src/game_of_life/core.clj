@@ -15,13 +15,20 @@
                          (assoc-in board cell :on))]
     (reduce create-cell-at board cells)))
 
-(defn neighbors [height width cell]
-  ())
+(defn neighbors
+  "Returns the 8 neighbors of cell from a board with given height and
+  width.  The board is assumed to be toroidal (the top and bottom of
+  the board wrap around as well as the left with the right.)"
+  [height width [x y]]
+  (for [dx [-1 0 1] dy [-1 0 1] :when (not= 0 dx dy)]
+    (let [new-x (mod (+ x dx) height)
+          new-y (mod (+ y dy) width)]
+      [new-x new-y])))
 
 (defn step
-  " Preforms one step in the game of life
-  Returns a new, updated set of live cells
-  cells is a set of coordinates representing live cells"
+  "Performs one step in the game of life.
+  Returns a new, updated set of live cells.
+  'cells' is a set of coordinates representing live cells"
   [neighbors cells]
   ())
 
