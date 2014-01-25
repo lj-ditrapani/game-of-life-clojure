@@ -1,5 +1,5 @@
 ;;; Author:  Lyall Jonathan Di Trapani ---------------------------------
-;;; A location is an [x y] coordinate
+;;; A live cell is a 2-D location represented by an [x y] coordinate
 ;;; The state of the world is a set of coordinates representing live
 ;;; cells
 (ns game-of-life.core)
@@ -32,7 +32,7 @@
 (defn step
   "Performs one step in the game of life.
   Returns a new, updated set of live cells.
-  'cells' is a set of coordinates representing live cells
+  'cells' is a set of 2-D coordinates representing live cells
   'neighbors' is the neighborhood function used to compute the
   neighborhood of live cells."
   [neighbors cells]
