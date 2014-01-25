@@ -59,3 +59,25 @@
     [(make-make-board-fn height width)
      neighbors
      (make-step-fn neighbors)]))
+
+(defn print-board [board]
+  (doseq [row board]
+    (println (apply str (map #(if % \O \-) row))))
+  (println ""))
+
+(defn run [height width steps cells]
+  (let [[make-board neighbors step] (init height width)
+        live-cells-seq (take steps (iterate step cells))]
+    (dorun steps (map #(print-board (make-board %)) live-cells-seq))))
+
+;; Pulsar
+(run 6 6 3 #{[1 0] [1 1] [1 2]})
+;; Pulsar
+(run 6 6 3 #{[0 0] [0 1]
+             [1 0]
+                               [2 3]
+                         [3 2] [3 3]})
+;; Glider
+(run 6 6 18 #{      [2 3]
+                         [3 4]
+             [4 2] [4 3] [4 4]})
