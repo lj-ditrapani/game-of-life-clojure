@@ -4,12 +4,16 @@
 ;;; cells
 (ns game-of-life.core)
 
-;; Height and width are needed for show-board and
+;; Height and width are needed for make-board and
 ;; neighbors (wrap around)
 ;; neighbors is needed for step
 
-(defn show-board [height width cells]
-  [[nil nil] [nil nil]])
+(defn make-board [height width cells]
+  (let [row (vec (repeat width nil))
+        board (vec (repeat height row))
+        create-cell-at (fn [board cell]
+                         (assoc-in board cell :on))]
+    (reduce create-cell-at board cells)))
 
 (defn neighbors [height width cell]
   ())
@@ -21,8 +25,8 @@
   [neighbors cells]
   ())
 
-(defn make-show-board-fn [height width]
-  (partial show-board height width))
+(defn make-make-board-fn [height width]
+  (partial make-board height width))
 
 (defn make-neighbors-fn [height width]
   (partial neighbors height width))
@@ -34,6 +38,6 @@
   ""
   [height width]
   (let [neighbors (make-neighbors-fn height width)]
-    [(make-show-board-fn height width)
+    [(make-make-board-fn height width)
      neighbors
      (make-step-fn neighbors)]))
