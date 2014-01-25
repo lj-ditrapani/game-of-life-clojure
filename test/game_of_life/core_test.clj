@@ -25,8 +25,39 @@
                   [3 3]       [3 0]
                   [0 3] [0 4] [0 0]]))
 
-(deftest test-step
+(deftest test-step-5x5
   (let [neighbors (make-neighbors-fn 5 5)]
+    (are [cells new-cells]
+         (= (step neighbors cells) new-cells)
+
+         #{[0 0] [3 3]}
+         #{},
+
+         #{[1 0] [1 1] [1 2]}
+         #{[0 1] [1 1] [2 1]},
+
+         #{[0 0] [0 1] [1 0] [1 1]}
+         #{[0 0] [0 1] [1 0] [1 1]},
+
+         #{[0 0] [0 1]
+           [1 0]
+                             [2 3]
+                       [3 2] [3 3]}
+         #{[0 0] [0 1]
+           [1 0] [1 1]             [1 4]
+                       [2 2] [2 3] [2 4]
+                       [3 2] [3 3]
+                 [4 1] [4 2]},
+
+         #{      [2 3]
+                       [3 4]
+           [4 2] [4 3] [4 4]}
+         #{[3 2]       [3 4]
+                 [4 3] [4 4]
+                 [0 3]})))
+
+(deftest test-step-6x6
+  (let [neighbors (make-neighbors-fn 6 6)]
     (are [cells new-cells]
          (= (step neighbors cells) new-cells)
 
@@ -53,4 +84,4 @@
            [4 2] [4 3] [4 4]}
          #{[3 2]       [3 4]
                  [4 3] [4 4]
-                 [0 3]})))
+                 [5 3]})))

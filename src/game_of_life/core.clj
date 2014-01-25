@@ -36,7 +36,12 @@
   'neighbors' is the neighborhood function used to compute the
   neighborhood of live cells."
   [neighbors cells]
-  ())
+  (let [loc-2-cell-count (frequencies (mapcat neighbors cells))
+        live? (fn [[loc cell-count]]
+                (or (= cell-count 3)
+                    (and (cells loc) (= cell-count 2))))
+        get-loc (fn [[loc cell-count]] loc)]
+    (set (map get-loc (filter live? loc-2-cell-count)))))
 
 (defn make-make-board-fn [height width]
   (partial make-board height width))
