@@ -70,14 +70,20 @@
         live-cells-seq (take steps (iterate step cells))]
     (dorun steps (map #(print-board (make-board %)) live-cells-seq))))
 
-;; Pulsar
-(run 6 6 3 #{[1 0] [1 1] [1 2]})
-;; Pulsar
-(run 6 6 3 #{[0 0] [0 1]
-             [1 0]
-                               [2 3]
-                         [3 2] [3 3]})
-;; Glider
-(run 6 6 18 #{      [2 3]
-                         [3 4]
-             [4 2] [4 3] [4 4]})
+(defn demo []
+  ;; Pulsar
+  (println "\n\n3-cell bar pulsar\n")
+  (run 6 6 3 #{[1 0] [1 1] [1 2]})
+  ;; Pulsar
+  (println "\n\n4-cell box pulsar\n")
+  (run 6 6 3 #{[0 0] [0 1]
+               [1 0]
+                                 [2 3]
+                           [3 2] [3 3]})
+  ;; Glider
+  (println "\n\nGlider!\n")
+  (run 6 6 18 #{      [2 3]
+                           [3 4]
+               [4 2] [4 3] [4 4]}))
+
+; (demo)
